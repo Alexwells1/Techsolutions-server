@@ -5,23 +5,19 @@ export const createRegistration = async (req: Request, res: Response) => {
   try {
     const {
       teamName,
-      institution,
       teamLeaderName,
       teamLeaderEmail,
       members,
       project,
-      declarations,
     } = req.body;
 
-    // Basic validation
+
     if (
       !teamName ||
-      !institution ||
       !teamLeaderName ||
       !teamLeaderEmail ||
       !members ||
-      !project ||
-      !declarations
+      !project
     ) {
       return res.status(400).json({ message: "Missing required fields" });
     }
@@ -66,10 +62,8 @@ export const createRegistration = async (req: Request, res: Response) => {
     // Create registration document
     const registration = new Registration({
       teamName,
-      institution,
       members: allMembers,
       project,
-      declarations,
     });
 
     await registration.save();

@@ -12,53 +12,42 @@ export interface IProject {
   focusArea: string;
   problem: string;
   solution: string;
-  technologies: string;
-  features: string[];
 }
 
-export interface IDeclarations {
-  mouAgreed: boolean;
-  publicityConsent: boolean;
-  conflict: string;
-}
 
 export interface IRegistration extends Document {
   teamName: string;
-  institution: string;
   members: ITeamMember[];
   project: IProject;
-  declarations: IDeclarations;
-  createdAt: Date;
+  status: "pending" | "approved" | "rejected";
 }
 
-const TeamMemberSchema: Schema<ITeamMember> = new Schema({
+const TeamMemberSchema = new Schema({
   name: { type: String, required: true },
   email: { type: String, required: true },
   role: { type: String, enum: ["Leader", "Member"], required: true },
 });
 
-const ProjectSchema: Schema<IProject> = new Schema({
+
+const ProjectSchema = new Schema({
   title: { type: String, required: true },
   focusArea: { type: String, required: true },
   problem: { type: String, required: true },
   solution: { type: String, required: true },
-  technologies: { type: String, required: true },
-  features: [{ type: String, required: true }],
 });
 
-const DeclarationsSchema: Schema<IDeclarations> = new Schema({
-  mouAgreed: { type: Boolean, required: true },
-  publicityConsent: { type: Boolean, required: true },
-  conflict: { type: String, required: true },
-});
+
 
 const RegistrationSchema: Schema<IRegistration> = new Schema(
   {
     teamName: { type: String, required: true },
-    institution: { type: String, required: true },
     members: { type: [TeamMemberSchema], required: true },
     project: { type: ProjectSchema, required: true },
-    declarations: { type: DeclarationsSchema, required: true },
+    status: {
+      type: String,
+      enum: ["pending", "approved", "rejected"],
+      default: "pending",
+    },
   },
   { timestamps: true }
 );
