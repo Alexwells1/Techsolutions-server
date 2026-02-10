@@ -40,7 +40,7 @@ export const createRegistration = async (req: Request, res: Response) => {
     const focusCount = await Registration.countDocuments({
       "project.focusArea": project.focusArea,
     });
-    if (focusCount >= 2) {
+    if (focusCount >= 1) {
       console.log(
         `Registration failed: Focus area "${project.focusArea}" not available`
       );
