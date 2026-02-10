@@ -10,8 +10,6 @@ export interface ITeamMember {
 export interface IProject {
   title: string;
   focusArea: string;
-  problem: string;
-  solution: string;
 }
 
 
@@ -19,7 +17,6 @@ export interface IRegistration extends Document {
   teamName: string;
   members: ITeamMember[];
   project: IProject;
-  status: "pending" | "approved" | "rejected";
 }
 
 const TeamMemberSchema = new Schema({
@@ -32,8 +29,6 @@ const TeamMemberSchema = new Schema({
 const ProjectSchema = new Schema({
   title: { type: String, required: true },
   focusArea: { type: String, required: true },
-  problem: { type: String, required: true },
-  solution: { type: String, required: true },
 });
 
 
@@ -43,11 +38,6 @@ const RegistrationSchema: Schema<IRegistration> = new Schema(
     teamName: { type: String, required: true },
     members: { type: [TeamMemberSchema], required: true },
     project: { type: ProjectSchema, required: true },
-    status: {
-      type: String,
-      enum: ["pending", "approved", "rejected"],
-      default: "pending",
-    },
   },
   { timestamps: true }
 );
