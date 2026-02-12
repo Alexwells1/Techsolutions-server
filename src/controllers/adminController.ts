@@ -1,60 +1,42 @@
+// src/controllers/adminController.ts
 import { Request, Response } from "express";
 import Registration from "../models/Registration";
 
+// List all registrations with summary info
 export const getAllRegistrations = async (req: Request, res: Response) => {
   try {
+    console.log("getAllRegistrations");
     const registrations = await Registration.find().lean();
-    res.status(200).json({ success: true, data: registrations });
+
+    // Map to summary info
+    const summary = registrations.map((r) => ({
+      id: r._id,
+      teamName: r.teamName,
+      project: r.project,
+    }));
+
+    res.status(200).json({ success: true, data: summary });
   } catch (error) {
+    console.error(error);
     res.status(500).json({ success: false, message: "Server error" });
   }
 };
 
-// approve a registration
-export const approveRegistration = async (req: Request, res: Response) => {
+// Get full details of a single registration
+export const getRegistrationById = async (req: Request, res: Response) => {
   try {
-    const approvedCount = await Registration.countDocuments({
-      status: "approved",
-    });
-    if (approvedCount >= 8) {
+    const { id } = req.params;
+    const registration = await Registration.findById(id).lean();
+
+    if (!registration) {
       return res
-        .status(400)
-        .json({ success: false, message: "Max 8 approvals reached" });
+        .status(404)
+        .json({ success: false, message: "Registration not found" });
     }
 
-    const registration = await Registration.findByIdAndUpdate(
-      req.params.id,
-      { status: "approved" },
-      { new: true }
-    );
-
-    if (!registration)
-      return res
-        .status(404)
-        .json({ success: false, message: "Registration not found" });
-
     res.status(200).json({ success: true, data: registration });
   } catch (error) {
-    res.status(500).json({ success: false, message: "Server error" });
-  }
-};
-
-// reject a registration
-export const rejectRegistration = async (req: Request, res: Response) => {
-  try {
-    const registration = await Registration.findByIdAndUpdate(
-      req.params.id,
-      { status: "rejected" },
-      { new: true }
-    );
-
-    if (!registration)
-      return res
-        .status(404)
-        .json({ success: false, message: "Registration not found" });
-
-    res.status(200).json({ success: true, data: registration });
-  } catch (error) {
+    console.error(error);
     res.status(500).json({ success: false, message: "Server error" });
   }
 };

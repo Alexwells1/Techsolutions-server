@@ -1,9 +1,21 @@
 import express from "express";
-import { approveRegistration, getAllRegistrations, rejectRegistration } from "../controllers/adminController";
+import {  getAllRegistrations, getRegistrationById } from "../controllers/adminController";
+import { protect } from "../middleware/auth";
+import { createSuperAdmin, login } from "../controllers/authController";
 const router = express.Router();
 
-// GET /api/admin/registrations
-router.get("/registrations", getAllRegistrations);
-router.patch("/registrations/:id/approve", approveRegistration);
-router.patch("/registrations/:id/reject", rejectRegistration);
+
+// Login route
+router.post("/auth/login", login);
+
+
+// Register route
+router.post("/auth/sregister", createSuperAdmin);
+
+
+// Get summary of all registrations
+router.get("/registrations",   getAllRegistrations);
+
+// Get full details of a single registration
+router.get("/registrations/:id",  getRegistrationById);
 export default router;

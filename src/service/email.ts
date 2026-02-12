@@ -56,6 +56,9 @@ export async function sendRegistrationEmail({
   const dtstart = toICSDate(eventStart);
   const dtend = toICSDate(eventEnd);
 
+  const whatsappGroupUrl = "https://chat.whatsapp.com/LoHHJ7l4hJUKvFL11u5Rj1";
+  const groupLeaderFormUrl = "https://forms.gle/42qXzCfkXAyuDEXNA";
+
   const ics = [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
@@ -139,7 +142,7 @@ export async function sendRegistrationEmail({
     <div style="margin-bottom: 40px;">
       <h3 style="margin: 0 0 12px 0; font-size: 26px; font-weight: 500;">Overview of the Event</h3>
       <p style="margin: 0 0 16px 0; font-size: 18px; line-height: 2; color: #444444;">
-        FUNAAB TECHSolutions 2026 is a structured hackathon focused on developing innovative solutions to real-life challenges under the theme “Smart Solutions for a Fast-Moving World.” The program includes team-based ideation, product design and development, prototyping sprints, mentorship from industry professionals, project demonstrations, judging, and awards. Outstanding teams will receive mentorship and incubation opportunities.
+        FUNAAB TECHSolutions 2026 is a structured hackathon focused on developing innovative solutions to real-life challenges under the theme "Smart Solutions for a Fast-Moving World." The program includes team-based ideation, product design and development, prototyping sprints, mentorship from industry professionals, project demonstrations, judging, and awards. Outstanding teams will receive mentorship and incubation opportunities.
       </p>
 
       <h3 style="margin: 0 0 12px 0; font-size: 26px; font-weight: 500;">Program Structure & Format</h3>
@@ -153,70 +156,91 @@ export async function sendRegistrationEmail({
     </div>
 
     <!-- Registration Details -->
-  <!-- Registration Details -->
-<div style="padding: 30px 20px; margin-bottom: 40px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;">
-  <h2 style="margin: 0 0 24px 0; font-size: 30px; font-weight: 600; color: #000000;">Registration Details</h2>
+    <div style="padding: 30px 20px; margin-bottom: 40px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;">
+      <h2 style="margin: 0 0 24px 0; font-size: 30px; font-weight: 600; color: #000000;">Registration Details</h2>
 
-  <!-- Team Name -->
-  <div style="margin-bottom: 16px;">
-    <div style="font-weight: 600; font-size: 20px; color: #333333; margin-bottom: 4px;">Team Name</div>
-    <div style="font-size: 18px; color: #000000;">${teamName}</div>
-  </div>
+      <!-- Team Name -->
+      <div style="margin-bottom: 16px;">
+        <div style="font-weight: 600; font-size: 20px; color: #333333; margin-bottom: 4px;">Team Name</div>
+        <div style="font-size: 18px; color: #000000;">${teamName}</div>
+      </div>
 
-  <!-- Project Title -->
-  <div style="margin-bottom: 24px;">
-    <div style="font-weight: 600; font-size: 20px; color: #333333; margin-bottom: 4px;">Project Title</div>
-    <div style="font-size: 18px; color: #000000;">${projectTitle}</div>
-  </div>
+      <!-- Project Title -->
+      <div style="margin-bottom: 24px;">
+        <div style="font-weight: 600; font-size: 20px; color: #333333; margin-bottom: 4px;">Project Title</div>
+        <div style="font-size: 18px; color: #000000;">${projectTitle}</div>
+      </div>
 
-  <!-- Team Members -->
-  <div style="margin-top: 20px;">
-    <div style="font-weight: 600; font-size: 20px; margin-bottom: 12px; color: #000000;">Team Members</div>
-    <ul style="margin: 0; padding-left: 28px; font-size: 18px; line-height: 2; color: #444444;">
-      ${teamMembers.map((member) => `<li>${member.name}</li>`).join("")}
-    </ul>
-  </div>
-</div>
+      <!-- Team Members -->
+      <div style="margin-top: 20px;">
+        <div style="font-weight: 600; font-size: 20px; margin-bottom: 12px; color: #000000;">Team Members</div>
+        <ul style="margin: 0; padding-left: 28px; font-size: 18px; line-height: 2; color: #444444;">
+          ${teamMembers.map((member) => `<li>${member.name}</li>`).join("")}
+        </ul>
+      </div>
+    </div>
 
+    <!-- Important Next Steps -->
+    <div style="margin-bottom: 40px;">
+      <h3 style="margin: 0 0 12px 0; font-size: 26px; font-weight: 500;">Important Next Steps</h3>
+      
+      <!-- WhatsApp Group -->
+      <div style="margin-bottom: 30px;">
+        <p style="margin: 0 0 16px 0; font-size: 18px; line-height: 2; color: #444444;">
+          All participants are required to join our WhatsApp group for important updates, announcements, and team coordination throughout the hackathon.
+        </p>
+        <div style="text-align: center; margin: 20px 0;">
+          <a href="${whatsappGroupUrl}" target="_blank" style="display: inline-block; background: #25D366; color: white; padding: 16px 48px; text-decoration: none; border-radius: 6px; font-weight: 500; font-size: 20px;">Join WhatsApp Group</a>
+        </div>
+      </div>
 
- <!-- Event Structure -->
-<section style="margin-bottom: 40px; padding: 0 10px;">
-  <h3 style="margin: 0 0 24px 0; font-size: 26px; font-weight: 500; color: #000000;">Event Structure</h3>
+      <!-- Group Leader Form -->
+      <div style="margin-top: 30px;">
+        <p style="margin: 0 0 16px 0; font-size: 18px; line-height: 2; color: #444444;">
+          <strong>For Team Leaders Only:</strong> If you are the team leader, please complete the additional team leader form to provide essential information about your team.
+        </p>
+        <div style="text-align: center; margin: 20px 0;">
+          <a href="${groupLeaderFormUrl}" target="_blank" style="display: inline-block; background: #2a4365; color: white; padding: 16px 48px; text-decoration: none; border-radius: 6px; font-weight: 500; font-size: 20px;">Complete Leader Form</a>
+        </div>
+      </div>
+    </div>
 
-  <!-- Week 1 -->
-  <article style="margin-bottom: 24px;">
-    <h4 style="margin: 0 0 8px 0; font-size: 22px; font-weight: 600; color: #000000;">Week 1: Ideation & Team Formation</h4>
-    <p style="margin: 0; font-size: 20px; line-height: 1.8; color: #444444;">
-      Teams form and define a clear problem statement.
-    </p>
-  </article>
+    <!-- Event Structure -->
+    <section style="margin-bottom: 40px; padding: 0 10px;">
+      <h3 style="margin: 0 0 24px 0; font-size: 26px; font-weight: 500; color: #000000;">Event Structure</h3>
 
-  <!-- Week 2 -->
-  <article style="margin-bottom: 24px;">
-    <h4 style="margin: 0 0 8px 0; font-size: 22px; font-weight: 600; color: #000000;">Week 2: Design & Prototype</h4>
-    <p style="margin: 0; font-size: 20px; line-height: 1.8; color: #444444;">
-      Create wireframes and testable MVPs.
-    </p>
-  </article>
+      <!-- Week 1 -->
+      <article style="margin-bottom: 24px;">
+        <h4 style="margin: 0 0 8px 0; font-size: 22px; font-weight: 600; color: #000000;">Week 1: Ideation & Team Formation</h4>
+        <p style="margin: 0; font-size: 20px; line-height: 1.8; color: #444444;">
+          Teams form and define a clear problem statement.
+        </p>
+      </article>
 
-  <!-- Week 3 -->
-  <article style="margin-bottom: 24px;">
-    <h4 style="margin: 0 0 8px 0; font-size: 22px; font-weight: 600; color: #000000;">Week 3: Development Sprint</h4>
-    <p style="margin: 0; font-size: 20px; line-height: 1.8; color: #444444;">
-      Code, integrate, and test solutions.
-    </p>
-  </article>
+      <!-- Week 2 -->
+      <article style="margin-bottom: 24px;">
+        <h4 style="margin: 0 0 8px 0; font-size: 22px; font-weight: 600; color: #000000;">Week 2: Design & Prototype</h4>
+        <p style="margin: 0; font-size: 20px; line-height: 1.8; color: #444444;">
+          Create wireframes and testable MVPs.
+        </p>
+      </article>
 
-  <!-- Week 4 -->
-  <article style="margin-bottom: 24px;">
-    <h4 style="margin: 0 0 8px 0; font-size: 22px; font-weight: 600; color: #000000;">Week 4: Demo Day & Judging</h4>
-    <p style="margin: 0; font-size: 20px; line-height: 1.8; color: #444444;">
-      Live demos and award ceremony.
-    </p>
-  </article>
-</section>
+      <!-- Week 3 -->
+      <article style="margin-bottom: 24px;">
+        <h4 style="margin: 0 0 8px 0; font-size: 22px; font-weight: 600; color: #000000;">Week 3: Development Sprint</h4>
+        <p style="margin: 0; font-size: 20px; line-height: 1.8; color: #444444;">
+          Code, integrate, and test solutions.
+        </p>
+      </article>
 
-
+      <!-- Week 4 -->
+      <article style="margin-bottom: 24px;">
+        <h4 style="margin: 0 0 8px 0; font-size: 22px; font-weight: 600; color: #000000;">Week 4: Demo Day & Judging</h4>
+        <p style="margin: 0; font-size: 20px; line-height: 1.8; color: #444444;">
+          Live demos and award ceremony.
+        </p>
+      </article>
+    </section>
 
     <!-- CTA -->
     <div style="text-align: center; margin: 40px 0; padding: 30px 0; border-top: 1px solid #ccc; border-bottom: 1px solid #ccc;">
