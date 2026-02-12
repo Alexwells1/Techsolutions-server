@@ -190,7 +190,7 @@ export async function sendRegistrationEmail({
           All participants are required to join our WhatsApp group for important updates, announcements, and team coordination throughout the hackathon.
         </p>
         <div style="text-align: center; margin: 20px 0;">
-          <a href="${whatsappGroupUrl}" target="_blank" style="display: inline-block; background: #25D366; color: white; padding: 16px 48px; text-decoration: none; border-radius: 6px; font-weight: 500; font-size: 20px;">Join WhatsApp Group</a>
+          <a href="${whatsappGroupUrl}" target="_blank" style="display: inline-block; background: #25D366; color: #ffffff; padding: 16px 48px; text-decoration: none; border-radius: 6px; font-weight: 500; font-size: 20px;">💬 Join WhatsApp Group</a>
         </div>
       </div>
 
@@ -200,7 +200,7 @@ export async function sendRegistrationEmail({
           <strong>For Team Leaders Only:</strong> If you are the team leader, please complete the additional team leader form to provide essential information about your team.
         </p>
         <div style="text-align: center; margin: 20px 0;">
-          <a href="${groupLeaderFormUrl}" target="_blank" style="display: inline-block; background: #2a4365; color: white; padding: 16px 48px; text-decoration: none; border-radius: 6px; font-weight: 500; font-size: 20px;">Complete Leader Form</a>
+          <a href="${groupLeaderFormUrl}" target="_blank" style="display: inline-block; background: #2a4365; color: white; padding: 16px 48px; text-decoration: none; border-radius: 6px; font-weight: 500; font-size: 20px;">📄 Complete Leader Form</a>
         </div>
       </div>
     </div>

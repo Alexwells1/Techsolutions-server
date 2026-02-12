@@ -1,6 +1,7 @@
 // src/controllers/adminController.ts
 import { Request, Response } from "express";
 import Registration from "../models/Registration";
+import Admin from "../models/admin";
 
 // List all registrations with summary info
 export const getAllRegistrations = async (req: Request, res: Response) => {
@@ -35,6 +36,20 @@ export const getRegistrationById = async (req: Request, res: Response) => {
     }
 
     res.status(200).json({ success: true, data: registration });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: "Server error" });
+  }
+};
+
+
+
+export const getAllAdmins = async (req: Request, res: Response) => {
+  try {
+    console.log("getAllRegistrations");
+    const admin = await Admin.find().lean();
+
+    res.status(200).json({ success: true, data: admin });
   } catch (error) {
     console.error(error);
     res.status(500).json({ success: false, message: "Server error" });

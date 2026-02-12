@@ -67,3 +67,5 @@ export const createAdmin = async (req: Request, res: Response) => {
     .status(201)
     .json({ message: "admin created", username: admin.username });
 };
+
+

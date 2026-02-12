@@ -1,7 +1,7 @@
 import express from "express";
 import {  getAllRegistrations, getRegistrationById } from "../controllers/adminController";
 import { protect } from "../middleware/auth";
-import { createSuperAdmin, login } from "../controllers/authController";
+import { createAdmin, createSuperAdmin, login } from "../controllers/authController";
 const router = express.Router();
 
 
@@ -11,6 +11,8 @@ router.post("/auth/login", login);
 
 // Register route
 router.post("/auth/sregister", createSuperAdmin);
+
+router.post("/auth/register", createAdmin);
 
 
 // Get summary of all registrations
